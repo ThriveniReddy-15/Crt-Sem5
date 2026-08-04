@@ -18,3 +18,21 @@ def numberOfSubarrays(nums: List[int], k: int) -> int:
 nums = [1,1,2,1,1]
 k = 3 
 print(numberOfSubarrays(nums,k))
+#Leetcode - 1763
+def longestNiceSubstring(s: str) -> str:
+        if len(s)<2:
+            return ""
+        unique = set(s)
+        for i,ch in enumerate(s):
+            if ch.lower() in unique and ch.upper() in unique:
+                continue
+            left_str = longestNiceSubstring(s[:i]) 
+            right_str = longestNiceSubstring(s[i+1:])
+            if len(left_str) >= len(right_str) :
+                return left_str
+            else:
+                return right_str
+        return s
+s = "YazaAay"
+print(longestNiceSubstring(s))
+
